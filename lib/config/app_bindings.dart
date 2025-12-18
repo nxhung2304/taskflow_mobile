@@ -1,0 +1,14 @@
+import 'package:get/get.dart';
+import 'package:learn_getx/config/app_controller.dart';
+import 'package:learn_getx/config/app_logging.dart';
+import 'package:learn_getx/config/api_service.dart';
+
+class AppBindings extends Bindings {
+  @override
+  void dependencies() {
+    Get.put(AppLogging(), permanent: true);
+    Get.put(ApiService(), permanent: true);
+
+    Get.put(AppController(), permanent: true);
+  }
+}
