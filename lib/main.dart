@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:learn_getx/bootstrap.dart';
+import 'package:learn_getx/config/app_bindings.dart';
+import 'package:learn_getx/config/app_routes.dart';
 
-void main() {
-  runApp(const MainApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await bootstrap();
+
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -9,12 +17,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+    return GetMaterialApp(
+      initialRoute: AppRoutes.splash,
+      getPages: AppRoutes.pages,
+      initialBinding: AppBindings(),
     );
   }
 }
