@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' as getx;
 import 'package:learn_getx/config/app_logging.dart';
+import 'package:learn_getx/features/auth/constants/auth_constants.dart';
+import 'package:learn_getx/features/auth/models/auth_tokens.dart';
+import 'package:learn_getx/features/auth/services/auth_token_storage.dart';
 
 class ApiService extends getx.GetxService {
   late Dio _dio;
@@ -76,5 +79,27 @@ class ApiService extends getx.GetxService {
 
       rethrow;
     }
+  }
+
+  setAuthHeaders(AuthTokens authTokens) {
+    final headers = <String, String>{};
+    headers.addAll({
+      AuthConstants.accessToken: authTokens.accessToken,
+      AuthConstants.client: authTokens.client,
+      AuthConstants.uid: authTokens.uid,
+      AuthConstants.expiry: authTokens.expiry,
+    });
+    _dio.options.headers.addAll(headers);
+
+    log.d('Set auth headers: $headers');
+  }
+
+  clearAuthHeaders() {
+    _dio.options.headers.remove(AuthConstants.accessToken);
+    _dio.options.headers.remove(AuthConstants.client);
+    _dio.options.headers.remove(AuthConstants.uid);
+    _dio.options.headers.remove(AuthConstants.expiry);
+
+    log.d('Cleared auth headers');
   }
 }

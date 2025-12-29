@@ -28,8 +28,7 @@ class AuthRepository {
 
       final loginResponse = ApiResponse.fromJson(response.data);
       if (loginResponse.success) {
-        final tokens = AuthTokens.fromHeaders(response.headers);
-        await authTokenStorage.save(tokens);
+        await _handleLoginSuccess(response);
 
         return true;
       } else {
@@ -46,13 +45,23 @@ class AuthRepository {
     logging.d('Starting logout');
 
     try {
-      final response = await apiService.post(AppEndpoint.logout);
+      final response = await apiService.delete(AppEndpoint.logout);
       logging.d('Logout response received: ${response.data}');
 
-      await authTokenStorage.clear();
+      await _handleLogoutSuccess();
     } catch (e) {
       logging.e('Error during login - $e');
-      rethrow;
     }
+  }
+
+  _handleLoginSuccess(response) async {
+    final tokens = AuthTokens.fromHeaders(response.headers);
+    await authTokenStorage.save(tokens);
+    await apiService.setAuthHeaders(tokens);
+  }
+
+  _handleLogoutSuccess() async {
+    await authTokenStorage.clear();
+    await apiService.clearAuthHeaders();
   }
 }

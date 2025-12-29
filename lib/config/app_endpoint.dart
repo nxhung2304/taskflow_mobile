@@ -4,7 +4,7 @@ class AppEndpoint {
 
   // Auth
   static const String login = "/auth/sign_in";
-  static const String logout = "/auth/sign_in";
+  static const String logout = "/auth/sign_out";
 
   // Users
   static const String me = "/users/me";

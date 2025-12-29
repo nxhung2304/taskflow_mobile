@@ -11,7 +11,7 @@ class AuthController extends GetxController {
   final AuthTokenStorage authTokenStorage = Get.find<AuthTokenStorage>();
   final AuthRepository authRepository = Get.find<AuthRepository>();
   final AppController appController = Get.find<AppController>();
-  final logging = Get.find<AppLogging>();
+  final AppLogging logging = Get.find<AppLogging>();
 
   RxBool isLoading = false.obs;
   RxString error = ''.obs;
@@ -50,8 +50,8 @@ class AuthController extends GetxController {
   }
 
   Future<void> logout() async {
-      isLoading.value = true;
-      error.value = '';
+    isLoading.value = true;
+    error.value = '';
 
     try {
       await authRepository.logout();
