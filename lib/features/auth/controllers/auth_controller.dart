@@ -11,6 +11,7 @@ class AuthController extends GetxController {
   final AuthTokenStorage authTokenStorage = Get.find<AuthTokenStorage>();
   final AuthRepository authRepository = Get.find<AuthRepository>();
   final AppController appController = Get.find<AppController>();
+  final logging = Get.find<AppLogging>();
 
   RxBool isLoading = false.obs;
   RxString error = ''.obs;
@@ -40,7 +41,7 @@ class AuthController extends GetxController {
       appController.isAuthenticated.value = true;
       Get.offAllNamed(AppRoutes.home);
     } catch (e) {
-      AppLogging().d('Login error - $e');
+      logging.e('Login error - $e');
 
       error.value = "Login error - $e";
     } finally {
@@ -59,7 +60,7 @@ class AuthController extends GetxController {
       appController.isAuthenticated.value = false;
       Get.offAllNamed(AppRoutes.login);
     } catch (e) {
-      AppLogging().d('Logout error - $e');
+      logging.e('Logout error - $e');
 
       error.value = "Logout failed: ${e.toString()}";
     } finally {

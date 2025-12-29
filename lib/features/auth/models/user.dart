@@ -5,14 +5,11 @@ class User {
   final String email;
   final String name;
 
-  User({
-    required this.id,
-    required this.email,
-    required this.name,
-  });
+  User({required this.id, required this.email, required this.name});
 
   factory User.fromJson(Map<String, dynamic> json) {
-    AppLogging().d('Parsing user data: $json');
+    final logging = AppLogging();
+    logging.d('Parsing user data: $json');
 
     try {
       final idValue = json['id'];
@@ -25,12 +22,8 @@ class User {
         name: nameValue?.toString() ?? '',
       );
     } catch (e) {
-      AppLogging().d('Error parsing user data: $e');
-      return User(
-        id: 0,
-        email: '',
-        name: '',
-      );
+      logging.e('Error parsing user data: $e');
+      return User(id: 0, email: '', name: '');
     }
   }
 }

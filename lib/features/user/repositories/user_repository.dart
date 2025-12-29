@@ -4,12 +4,12 @@ import 'package:learn_getx/config/app_logging.dart';
 import 'package:learn_getx/config/models/api_response.dart';
 import 'package:learn_getx/config/api_service.dart';
 
-
 class UserRepository {
   final apiService = Get.find<ApiService>();
+  final logging = Get.find<AppLogging>();
 
   Future<ApiResponse> me() async {
-    AppLogging().d('Starting get information for me');
+    logging.d('Starting get information for me');
 
     try {
       final res = await apiService.get(AppEndpoint.me);
@@ -20,7 +20,7 @@ class UserRepository {
 
       return ApiResponse.fromJson(res.data);
     } catch (e) {
-      AppLogging().d('Error during me - $e');
+      logging.e('Error during me - $e');
       rethrow;
     }
   }

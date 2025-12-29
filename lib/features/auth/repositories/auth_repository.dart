@@ -43,17 +43,15 @@ class AuthRepository {
   }
 
   Future<void> logout() async {
-    AppLogging().d('Starting logout');
+    logging.d('Starting logout');
 
     try {
       final response = await apiService.post(AppEndpoint.logout);
-      logging.d(
-        'Logout response received: ${response.data}',
-      );
+      logging.d('Logout response received: ${response.data}');
 
       await authTokenStorage.clear();
     } catch (e) {
-      logging.d('Error during login - $e');
+      logging.e('Error during login - $e');
       rethrow;
     }
   }
