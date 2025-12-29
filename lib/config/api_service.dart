@@ -34,6 +34,8 @@ class ApiService extends getx.GetxService {
         responseBody: true,
       ),
     );
+
+    _restoreAuthHeaders();
   }
 
   Future<Response> post(String path, {Map<String, dynamic>? data}) {
@@ -78,6 +80,17 @@ class ApiService extends getx.GetxService {
       log.d('Unexpected error: $e');
 
       rethrow;
+    }
+  }
+
+  _restoreAuthHeaders() async {
+    final authTokenStorage = getx.Get.find<AuthTokenStorage>();
+    final authTokens = authTokenStorage.load();
+    if (authTokens.isValid()) {
+      setAuthHeaders(authTokens);
+    } else {
+      log.d('No valid auth tokens found in storage');
+      return;
     }
   }
 
