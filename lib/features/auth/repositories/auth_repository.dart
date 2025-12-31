@@ -5,7 +5,7 @@ import 'package:learn_getx/config/models/api_response.dart';
 import 'package:learn_getx/features/auth/services/auth_token_storage.dart';
 import 'package:learn_getx/features/auth/models/auth_tokens.dart';
 import 'package:learn_getx/features/auth/models/login_request.dart';
-import 'package:learn_getx/config/api_service.dart';
+import 'package:learn_getx/core/api_service.dart';
 
 class AuthRepository {
   final ApiService apiService = Get.find<ApiService>();
