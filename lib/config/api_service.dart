@@ -17,15 +17,18 @@ class ApiService extends getx.GetxService {
     required this.baseUrl,
     required this.connectTimeout,
     required this.receiveTimeout,
+    Dio? dio,
   }) {
-    _dio = Dio(
-      BaseOptions(
-        baseUrl: baseUrl,
-        connectTimeout: Duration(seconds: connectTimeout),
-        receiveTimeout: Duration(seconds: receiveTimeout),
-        headers: {'Content-Type': 'application/json'},
-      ),
-    );
+    _dio =
+        dio ??
+        Dio(
+          BaseOptions(
+            baseUrl: baseUrl,
+            connectTimeout: Duration(seconds: connectTimeout),
+            receiveTimeout: Duration(seconds: receiveTimeout),
+            headers: {'Content-Type': 'application/json'},
+          ),
+        );
 
     _dio.interceptors.add(
       LogInterceptor(
@@ -35,7 +38,7 @@ class ApiService extends getx.GetxService {
       ),
     );
 
-    _restoreAuthHeaders();
+    restoreAuthHeaders();
   }
 
   Future<Response> post(String path, {Map<String, dynamic>? data}) {
@@ -47,7 +50,7 @@ class ApiService extends getx.GetxService {
   Future<Response> get(String path) {
     log.d('Request ${_dio.options.baseUrl}$path');
 
-    return _request(() => _dio.post(path));
+    return _request(() => _dio.get(path));
   }
 
   Future<Response> patch(String path, {Map<String, dynamic>? data}) {
@@ -83,14 +86,26 @@ class ApiService extends getx.GetxService {
     }
   }
 
-  _restoreAuthHeaders() async {
-    final authTokenStorage = getx.Get.find<AuthTokenStorage>();
-    final authTokens = authTokenStorage.load();
-    if (authTokens.isValid()) {
-      setAuthHeaders(authTokens);
-    } else {
-      log.d('No valid auth tokens found in storage');
-      return;
+  restoreAuthHeaders() {
+    try {
+      final authTokenStorage = getx.Get.find<AuthTokenStorage>();
+      final authTokens = authTokenStorage.load();
+
+      clearAuthHeaders();
+
+      if (authTokens == null) {
+        log.d('No auth tokens found in storage');
+        return;
+      }
+
+      if (authTokens.isValid()) {
+        setAuthHeaders(authTokens);
+      } else {
+        log.d('No valid auth tokens found in storage');
+        return;
+      }
+    } catch (e) {
+      log.d('AuthTokenStorage not found, skip restoring auth headers');
     }
   }
 

@@ -4,7 +4,7 @@ class AuthTokens {
   final String uid;
   final String expiry;
 
-  AuthTokens({
+  const AuthTokens({
     required this.accessToken,
     required this.client,
     required this.uid,

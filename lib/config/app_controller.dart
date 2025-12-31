@@ -17,6 +17,12 @@ class AppController extends GetxController {
   void _initializeAuthState() {
     try {
       final tokens = authTokenStorage.load();
+
+      if (tokens == null) {
+        isAuthenticated.value = false;
+        return;
+      }
+
       isAuthenticated.value = tokens.isValid();
     } catch (e) {
       isAuthenticated.value = false;
