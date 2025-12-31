@@ -1,4 +1,4 @@
-import 'package:learn_getx/config/local_storage.dart';
+import 'package:learn_getx/core/local_storage.dart';
 import 'package:learn_getx/features/auth/constants/auth_constants.dart';
 import 'package:learn_getx/features/auth/models/auth_tokens.dart';
 
