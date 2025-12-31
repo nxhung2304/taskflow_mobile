@@ -6,9 +6,9 @@ import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
 import '../helpers/test_data.dart';
-import '../mocks/config/mock_app_logging.dart';
-import '../mocks/config/mock_auth_token_storage.dart';
-import '../mocks/config/mock_dio.dart';
+import '../mocks/core/mock_app_logging.dart';
+import '../mocks/core/mock_auth_token_storage.dart';
+import '../mocks/core/mock_dio.dart';
 
 void main() {
   group("ApiService", () {
