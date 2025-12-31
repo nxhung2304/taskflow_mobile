@@ -10,7 +10,7 @@ class AuthTokenStorage {
     await LocalStorage.remove(AuthConstants.expiry);
   }
 
-  AuthTokens load() {
+  AuthTokens? load() {
     final accessToken = LocalStorage.getString(AuthConstants.accessToken);
     final client = LocalStorage.getString(AuthConstants.client);
     final uid = LocalStorage.getString(AuthConstants.uid);

@@ -31,7 +31,12 @@ class AppLogging {
     }
   }
 
+  String getCallerName() {
+    return _getCaller();
+  }
+
   String _getCaller() {
+    var caller = 'Unknown';
     try {
       final frames = StackTrace.current.toString().split('\n');
 
@@ -44,11 +49,11 @@ class AppLogging {
         if (match != null) {
           final className = match.group(1);
           final methodName = match.group(2);
-          return '$className#$methodName';
+          caller = '$className#$methodName';
         }
       }
     } catch (_) {}
 
-    return 'Unknown';
+    return caller;
   }
 }
