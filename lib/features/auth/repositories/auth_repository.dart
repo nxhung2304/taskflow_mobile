@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:learn_getx/config/app_endpoint.dart';
 import 'package:learn_getx/config/app_logging.dart';
-import 'package:learn_getx/config/models/api_response.dart';
+import 'package:learn_getx/core/models/api_response.dart';
 import 'package:learn_getx/features/auth/services/auth_token_storage.dart';
 import 'package:learn_getx/features/auth/models/auth_tokens.dart';
 import 'package:learn_getx/features/auth/models/login_request.dart';
