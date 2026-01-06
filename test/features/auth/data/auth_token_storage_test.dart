@@ -1,6 +1,6 @@
 import 'package:learn_getx/core/local_storage.dart';
 import 'package:learn_getx/features/auth/constants/auth_constants.dart';
-import 'package:learn_getx/features/auth/data/auth_token_storage.dart';
+import 'package:learn_getx/core/models/auth_token_storage.dart';
 import 'package:learn_getx/features/auth/models/auth_tokens.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';

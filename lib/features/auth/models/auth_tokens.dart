@@ -11,17 +11,8 @@ class AuthTokens {
     required this.expiry,
   });
 
-  factory AuthTokens.fromMap(Map<String, String> map) {
-    return AuthTokens(
-      accessToken: map['access-token'] ?? '',
-      client: map['client'] ?? '',
-      uid: map['uid'] ?? '',
-      expiry: map['expiry'] ?? '',
-    );
-  }
-
   Map<String, dynamic> toJson() => {
-    'accessToken': accessToken,
+    'access-token': accessToken,
     'client': client,
     'uid': uid,
     'expiry': expiry,
@@ -29,14 +20,14 @@ class AuthTokens {
 
   factory AuthTokens.fromJson(Map<String, dynamic> json) {
     return AuthTokens(
-      accessToken: json['accessToken'] ?? '',
+      accessToken: json['access-token'] ?? '',
       client: json['client'] ?? '',
       uid: json['uid'] ?? '',
       expiry: json['expiry'] ?? '',
     );
   }
 
-  factory AuthTokens.fromHeaders(headers) {
+  factory AuthTokens.fromHeaders(Map<String, dynamic> headers) {
     return AuthTokens(
       accessToken: headers['access-token']?.first ?? '',
       client: headers['client']?.first ?? '',

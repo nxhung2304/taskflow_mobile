@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:learn_getx/config/app_controller.dart';
 import 'package:learn_getx/config/app_logging.dart';
 import 'package:learn_getx/config/app_routes.dart';
-import 'package:learn_getx/features/auth/data/auth_token_storage.dart';
+import 'package:learn_getx/core/models/auth_token_storage.dart';
 import 'package:learn_getx/features/auth/forms/login_form.dart';
 import 'package:learn_getx/features/auth/models/user.dart';
 import 'package:learn_getx/features/auth/repositories/auth_repository.dart';
