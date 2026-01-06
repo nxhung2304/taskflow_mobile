@@ -1,14 +1,20 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' as getx;
-import 'package:learn_getx/core/api_service.dart';
-import 'package:learn_getx/features/auth/services/auth_token_storage.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
+import 'package:learn_getx/core/api_service.dart';
+import 'package:learn_getx/features/auth/data/auth_token_storage.dart';
 import '../helpers/test_data.dart';
 import '../mocks/core/mock_app_logging.dart';
-import '../mocks/core/mock_auth_token_storage.dart';
-import '../mocks/core/mock_dio.dart';
+
+class MockDio extends Mock implements Dio {}
+
+class MockResponse<T> extends Mock implements Response<T> {}
+
+class MockInterceptors extends Mock implements Interceptors {}
+
+class MockAuthTokenStorage extends Mock implements AuthTokenStorage {}
 
 void main() {
   group("ApiService", () {
