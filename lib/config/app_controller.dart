@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:learn_getx/features/auth/data/auth_token_storage.dart';
+import 'package:learn_getx/core/models/auth_token_storage.dart';
 
 class AppController extends GetxController {
   final AuthTokenStorage authTokenStorage = Get.find<AuthTokenStorage>();

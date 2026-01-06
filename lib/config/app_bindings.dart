@@ -4,7 +4,7 @@ import 'package:learn_getx/config/app_endpoint.dart';
 import 'package:learn_getx/config/app_logging.dart';
 import 'package:learn_getx/core/api_service.dart';
 import 'package:learn_getx/core/local_storage.dart';
-import 'package:learn_getx/features/auth/data/auth_token_storage.dart';
+import 'package:learn_getx/core/models/auth_token_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppBindings extends Bindings {

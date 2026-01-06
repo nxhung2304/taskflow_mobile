@@ -4,7 +4,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
 import 'package:learn_getx/core/api_service.dart';
-import 'package:learn_getx/features/auth/data/auth_token_storage.dart';
+import 'package:learn_getx/core/models/auth_token_storage.dart';
 import '../helpers/test_data.dart';
 import '../mocks/core/mock_app_logging.dart';
 
