@@ -3,7 +3,7 @@ import 'package:get/get.dart' as getx;
 import 'package:learn_getx/config/app_logging.dart';
 import 'package:learn_getx/features/auth/constants/auth_constants.dart';
 import 'package:learn_getx/features/auth/models/auth_tokens.dart';
-import 'package:learn_getx/features/auth/services/auth_token_storage.dart';
+import 'package:learn_getx/features/auth/data/auth_token_storage.dart';
 
 class ApiService extends getx.GetxService {
   late Dio _dio;

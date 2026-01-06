@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' as getx;
 import 'package:learn_getx/core/api_service.dart';
-import 'package:learn_getx/features/auth/services/auth_token_storage.dart';
+import 'package:learn_getx/features/auth/data/auth_token_storage.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
