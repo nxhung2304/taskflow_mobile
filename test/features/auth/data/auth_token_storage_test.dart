@@ -7,6 +7,8 @@ import 'package:test/test.dart';
 
 class MockILocalStorage extends Mock implements ILocalStorage {}
 
+class MockLocalStorage extends Mock implements LocalStorage {}
+
 void main() {
   final uid = 'uid';
   final client = 'client';
